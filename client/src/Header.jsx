@@ -10,7 +10,7 @@ export default function Header() {
         <Link to="/login" className="">
           Login
         </Link>
-        <Link to="#" className="">
+        <Link to="/register" className="">
           Register
         </Link>
       </nav>
