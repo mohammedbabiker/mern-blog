@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import User from "./models/User.js";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
 const app = express();
 const PORT = 4000;
 
@@ -13,6 +14,7 @@ const secret = "mysecret";
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.mongodb_connection, {})
@@ -49,6 +51,14 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(401).json({ message: "Login failed" });
   }
+});
+
+app.get("/profile", (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, (err, info) => {
+    if (err) throw err;
+    res.json(info);
+  });
 });
 
 app.listen(PORT, () => {
