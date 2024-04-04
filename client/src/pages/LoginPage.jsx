@@ -1,10 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../UserContext";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
 
   async function loginUser(ev) {
     ev.preventDefault();
@@ -17,7 +19,10 @@ export default function LoginPage() {
       credentials: "include", // save cookie token
     });
     if (resopnes.ok) {
-      setRedirect(true);
+      resopnes.json().then((userInfo) => {
+        setUserInfo(userInfo);
+        setRedirect(true);
+      });
     } else {
       alert("Login failed");
     }

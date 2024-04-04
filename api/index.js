@@ -46,7 +46,10 @@ app.post("/login", async (req, res) => {
     // login successfully
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie("token", token).json("ok");
+      res.cookie("token", token).json({
+        id: userDoc._id,
+        username,
+      });
     });
   } else {
     res.status(401).json({ message: "Login failed" });

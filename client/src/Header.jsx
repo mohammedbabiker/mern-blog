@@ -1,25 +1,28 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
+import { UserContext } from "./UserContext";
 
 export default function Header() {
-  const [username, setUsername] = useState(null);
+  const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
-        setUsername(userInfo.username);
+        setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]); // to remove
 
   function logout() {
     fetch("http://localhost:4000/logout", {
       method: "POST",
       credentials: "include",
     });
-    setUsername(null);
+    setUserInfo(null);
   }
+
+  const username = userInfo?.username;
 
   return (
     <header className=" flex justify-between mb-8 items-center">
@@ -32,9 +35,9 @@ export default function Header() {
             <Link to="/create" className="">
               Create new Post
             </Link>
-            <a onClick={logout} className="">
+            <Link onClick={logout} className="">
               Logout
-            </a>
+            </Link>
           </>
         )}
         {!username && (
