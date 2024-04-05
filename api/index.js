@@ -3,11 +3,17 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import User from "./models/User.js";
+import Post from "./models/Post.js";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import multer from "multer";
+import fs from "fs";
+
 const app = express();
 const PORT = 4000;
+
+const uploadMiddleware = multer({ dest: "uploads/" });
 
 const salt = bcrypt.genSaltSync(10); // for pass encryption
 const secret = "mysecret";
@@ -66,6 +72,24 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
+});
+
+app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
+  const { originalname, path } = req.file;
+  const parts = originalname.split(".");
+  const ext = parts[parts.length - 1];
+  const newPath = path + "." + ext;
+  fs.renameSync(path, newPath);
+
+  const { title, summary, content } = req.body;
+  const postDoc = await Post.create({
+    title,
+    summary,
+    content,
+    cover: newPath,
+  });
+
+  res.json(postDoc);
 });
 
 app.listen(PORT, () => {
