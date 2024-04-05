@@ -9,10 +9,13 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import fs from "fs";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const app = express();
 const PORT = 4000;
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const uploadMiddleware = multer({ dest: "uploads/" });
 
 const salt = bcrypt.genSaltSync(10); // for pass encryption
@@ -21,6 +24,7 @@ const secret = "mysecret";
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads")); // serve static files end
 
 mongoose
   .connect(process.env.mongodb_connection, {})
@@ -81,15 +85,27 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
   const newPath = path + "." + ext;
   fs.renameSync(path, newPath);
 
-  const { title, summary, content } = req.body;
-  const postDoc = await Post.create({
-    title,
-    summary,
-    content,
-    cover: newPath,
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+    const { title, summary, content } = req.body;
+    const postDoc = await Post.create({
+      title,
+      summary,
+      content,
+      cover: newPath,
+      author: info.id,
+    });
+    res.json(postDoc);
   });
+});
 
-  res.json(postDoc);
+app.get("/post", async (req, res) => {
+  const posts = await Post.find()
+    .populate("author", "username")
+    .sort({ createdAt: -1 })
+    .limit(17);
+  res.json(posts);
 });
 
 app.listen(PORT, () => {

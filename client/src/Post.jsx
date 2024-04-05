@@ -1,28 +1,33 @@
-export default function Post() {
+import { format } from "date-fns";
+
+export default function Post({
+  title,
+  content,
+  summary,
+  author,
+  cover,
+  createdAt,
+}) {
   return (
     <div className="grid grid-cols-2 gap-5 mb-4">
       <div className="">
         <img
-          src="https://picsum.photos/900/300"
+          src={"http://localhost:4000/" + cover}
           alt="post-image"
           className="max-w-full"
         />
       </div>
       <div className="">
-        <h1 className="font-bold m-0 text-xl">
-          Whispers of Time: Echoes from Forgotten Dreams and Distant Memories
-        </h1>
+        <h1 className="font-bold m-0 text-xl">{title}</h1>
         <p className="text-sm my-[6px] mx-0 flex gap-3">
           <a href="#" className="text-gray-500">
-            Babai
+            {author.username}
           </a>
-          <time className="text-gray-500">2024-04-04 16:45</time>
+          <time className="text-gray-500">
+            {format(new Date(createdAt), "MMMM d, yyyy HH:mm")}
+          </time>
         </p>
-        <p className="my-2 mx-0 leading-5">
-          In the midst of swirling mist, shadows danced, whispering secrets lost
-          to time. Each breath carried echoes of forgotten tales, lingering in
-          the air like gentle melodies.
-        </p>
+        <p className="my-2 mx-0 leading-5">{summary}</p>
       </div>
     </div>
   );
