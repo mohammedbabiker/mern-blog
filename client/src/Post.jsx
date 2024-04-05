@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 export default function Post({
   title,
@@ -7,18 +8,23 @@ export default function Post({
   author,
   cover,
   createdAt,
+  _id,
 }) {
   return (
-    <div className="grid grid-cols-2 gap-5 mb-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-4">
       <div className="">
-        <img
-          src={"http://localhost:4000/" + cover}
-          alt="post-image"
-          className="max-w-full"
-        />
+        <Link to={`/post/${_id}`}>
+          <img
+            src={"http://localhost:4000/" + cover}
+            alt="post-image"
+            className="max-w-full"
+          />
+        </Link>
       </div>
       <div className="">
-        <h1 className="font-bold m-0 text-xl">{title}</h1>
+        <Link to={`/post/${_id}`}>
+          <h1 className="font-bold m-0 text-xl">{title}</h1>
+        </Link>
         <p className="text-sm my-[6px] mx-0 flex gap-3">
           <a href="#" className="text-gray-500">
             {author.username}
