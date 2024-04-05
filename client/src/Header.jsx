@@ -25,16 +25,18 @@ export default function Header() {
   const username = userInfo?.username;
 
   return (
-    <header className=" flex justify-between mb-8 items-center">
-      <Link to="/" className="no-underline text-inherit font-bold text-xl">
-        Mohammed Blog
-      </Link>
-      <nav className="flex gap-4 items-center">
+    <header className="fixed z-10 top-0 inset-x-0 border-b bg-white ">
+      <nav className="flex items-center justify-between max-w-5xl mx-auto px-4 h-24">
+        <Link to="/" className="no-underline text-inherit font-bold text-xl">
+          Mohammed Blog
+        </Link>
         {username && (
-          <>
-            <span> Welcome, {username}</span>
+          <div className="flex items-center gap-4 space-x-1">
+            {
+              // <span> Welcome, {username}</span>
+            }
             <Link to="/create" className="">
-              Create new Post
+              Create Post
             </Link>
             <Link
               onClick={logout}
@@ -56,17 +58,17 @@ export default function Header() {
                 />
               </svg>
             </Link>
-          </>
+          </div>
         )}
         {!username && (
-          <>
+          <div className="flex gap-4">
             <Link to="/login" className="">
               Login
             </Link>
             <Link to="/register" className="">
               Register
             </Link>
-          </>
+          </div>
         )}
       </nav>
     </header>

@@ -31,7 +31,8 @@ export default function CreatePost() {
     return <Navigate to="/" />;
   }
   return (
-    <form className="max-w-md my-0 mx-auto" onSubmit={createPost}>
+    <form className="max-w-4xl my-0 mx-auto pt-20" onSubmit={createPost}>
+      <h1 className="text-3xl font-bold text-center mb-9">Create New Post</h1>
       <input
         type="text"
         placeholder="Title"
@@ -60,7 +61,3 @@ export default function CreatePost() {
     </form>
   );
 }
-//  className="mb-3"
-// theme="snow"
-// placeholder="Content"
-// modules={{ toolbar: [["bold", "italic", "underline"]] }}

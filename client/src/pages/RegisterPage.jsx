@@ -19,7 +19,7 @@ export default function RegisterPage() {
     }
   }
   return (
-    <form onSubmit={registerUser} className="max-w-md my-0 mx-auto">
+    <form onSubmit={registerUser} className="max-w-md mt-20 mx-auto">
       <h1 className="text-3xl font-bold mb-5 text-center">Register</h1>
       <input
         type="text"

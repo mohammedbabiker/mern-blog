@@ -19,12 +19,12 @@ export default function PostPage() {
   if (!postInfo)
     return (
       <div>
-        <h1 className="text-center text-gray-400 text-lg">Loading...</h1>
+        <h1 className="text-center text-gray-400 text-lg pt-9">Loading...</h1>
       </div>
     );
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold pt-3 text-center">{postInfo.title}</h1>
       <time className="text-gray-400 block text-center pt-2 text-sm">
         {formatISO9075(new Date(postInfo.createdAt))}

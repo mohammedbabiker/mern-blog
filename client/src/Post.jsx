@@ -11,7 +11,7 @@ export default function Post({
   _id,
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-4 pt-14 pb-2 border-b-[1px] border-b-gray-200">
       <div className="">
         <Link to={`/post/${_id}`}>
           <img
@@ -21,7 +21,7 @@ export default function Post({
           />
         </Link>
       </div>
-      <div className="">
+      <div className="col-span-2">
         <Link to={`/post/${_id}`}>
           <h1 className="font-bold m-0 text-xl">{title}</h1>
         </Link>

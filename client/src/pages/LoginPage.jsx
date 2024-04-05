@@ -32,7 +32,7 @@ export default function LoginPage() {
     return <Navigate to="/" />;
   }
   return (
-    <form className="max-w-md my-0 mx-auto" onSubmit={loginUser}>
+    <form className="max-w-md mx-auto mt-20" onSubmit={loginUser}>
       <h1 className="text-3xl font-bold mb-5 text-center">Login</h1>
       <input
         type="text"
