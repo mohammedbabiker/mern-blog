@@ -36,26 +36,26 @@ export default function CreatePost() {
       <input
         type="text"
         placeholder="Title"
-        className="block mb-3 w-full py-1 px-3 border border-gray-300 rounded-md"
+        className="block mb-3 w-full p-2 bg-transparent border border-gray-300 rounded-md"
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
       <input
         type="text"
         placeholder="Summary"
-        className="block mb-3 w-full py-1 px-3 border border-gray-300 rounded-md"
+        className="block mb-3 w-full p-2 bg-transparent border border-gray-300 rounded-md"
         value={summary}
         onChange={(ev) => setSummary(ev.target.value)}
       />
       <input
         type="file"
-        className="block mb-3 w-full py-1 px-3 border border-gray-300 rounded-md"
+        className="block mb-3 w-full p-2 border border-gray-300 rounded-md"
         // value={files}
         onChange={(ev) => setFiles(ev.target.files)}
       />
       <Editor value={content} onChange={setContent} />
 
-      <button className="w-full bg-gray-500 border-none rounded-md text-white p-1">
+      <button className="w-full bg-gradient-to-r from-gray-300 to-gray-600 border-none rounded-md text-white px-8 py-3">
         Create Post
       </button>
     </form>

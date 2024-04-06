@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { UserContext } from "./UserContext";
+import Darkmode from "./Darkmode";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
@@ -25,7 +26,7 @@ export default function Header() {
   const username = userInfo?.username;
 
   return (
-    <header className="fixed z-10 top-0 inset-x-0 border-b bg-white ">
+    <header className="fixed z-10 top-0 inset-x-0 border-b dark:border-stone-600 bg-white dark:bg-stone-900 dark:text-stone-300">
       <nav className="flex items-center justify-between max-w-5xl mx-auto px-4 h-24">
         <Link to="/" className="no-underline text-inherit font-bold text-xl">
           Mohammed Blog
@@ -38,6 +39,7 @@ export default function Header() {
             <Link to="/create" className="">
               Create Post
             </Link>
+            <Darkmode />
             <Link
               onClick={logout}
               className="inline-flex gap-1 bg-gray-700 text-white rounded-[5px] px-2 py-1 items-center "
@@ -61,13 +63,14 @@ export default function Header() {
           </div>
         )}
         {!username && (
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <Link to="/login" className="">
               Login
             </Link>
             <Link to="/register" className="">
               Register
             </Link>
+            <Darkmode />
           </div>
         )}
       </nav>

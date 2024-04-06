@@ -37,20 +37,20 @@ export default function LoginPage() {
       <input
         type="text"
         placeholder="Username"
-        className="block mb-3 w-full py-1 px-3 border border-gray-300 rounded-md"
+        className="block mb-3 w-full p-2 border border-gray-300 rounded-md"
         value={username}
         onChange={(ev) => setUsername(ev.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
-        className="block mb-3 w-full py-1 px-3 border border-gray-300 rounded-md"
+        className="block mb-3 w-full p-2 border border-gray-300 rounded-md"
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}
       />
       <button
         type="submit"
-        className="w-full bg-gray-500 border-none rounded-md text-white p-1"
+        className="w-full bg-gradient-to-r from-gray-300 to-gray-600 border-none rounded-md text-white px-8 py-3"
       >
         Login
       </button>
