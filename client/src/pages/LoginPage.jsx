@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../UserContext";
 
@@ -54,6 +54,12 @@ export default function LoginPage() {
       >
         Login
       </button>
+      <h5 className="text-center mt-3">
+        Dont have an account? Sign up{" "}
+        <Link to="/register" className="hover:underline font-bold">
+          here
+        </Link>
+      </h5>
     </form>
   );
 }
