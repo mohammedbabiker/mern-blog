@@ -56,7 +56,7 @@ export default function Darkmode() {
       <button
         type="button"
         onClick={handleThemeSwitch}
-        className=" p-2 z-10 right-20 top-4 bg-violet-300 dark:bg-orange-300 text-lg  rounded-md"
+        className=" p-2 z-10 right-20 top-4 bg-gray-500 dark:bg-slate-500 text-lg  rounded-md"
       >
         {theme === "dark" ? sun : moon}
       </button>
