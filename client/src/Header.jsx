@@ -42,7 +42,7 @@ export default function Header() {
             <Darkmode />
             <Link
               onClick={logout}
-              className="inline-flex gap-1 bg-gray-700 text-white rounded-[5px] px-2 py-1 items-center "
+              className="inline-flex gap-1 bg-gray-500 text-white rounded-[5px] px-2 py-1 items-center "
             >
               Logout
               <svg

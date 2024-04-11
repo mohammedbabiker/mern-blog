@@ -34,7 +34,7 @@ export default function PostPage() {
         <div className="text-center mt-3">
           <Link
             to={`/edit/${postInfo._id}`}
-            className="text-center items-center inline-flex gap-1 text-sm bg-gray-700 text-white px-3 py-2 rounded-[5px]"
+            className="text-center items-center inline-flex gap-1 text-sm bg-gray-500 text-white px-3 py-2 rounded-[5px]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,11 @@ export default function PostPage() {
         </div>
       )}
       <div className="py-11">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="post-cover" />
+        <img
+          src={`http://localhost:4000/${postInfo.cover}`}
+          alt="post-cover"
+          className="w-full h-full"
+        />
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: postInfo.content }}
